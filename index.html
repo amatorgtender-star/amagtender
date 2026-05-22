@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>곽용식 — 풀스택 개발자 포트폴리오</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <style>
   /* ── Variables (Alembic-inspired) ── */
   :root {
@@ -19,8 +22,8 @@
     --white:    #ffffff;
     --radius:   6px;
     --max:      860px;
-    --sans:     'Noto Sans KR', sans-serif;
-    --serif:    'Lora', Georgia, serif;
+    --sans:     'Pretendard', 'Noto Sans KR', sans-serif;
+    --serif:    'DM Sans', 'Pretendard', sans-serif;
   }
 
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -28,10 +31,13 @@
 
   body {
     font-family: var(--sans);
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text);
     background: var(--white);
-    line-height: 1.7;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   a { color: var(--link); text-decoration: none; }
@@ -51,11 +57,11 @@
   }
 
   .site-logo {
-    font-family: var(--serif);
-    font-size: 1.25rem;
+    font-family: 'DM Sans', var(--sans);
+    font-size: 1.1rem;
     font-weight: 600;
     color: #fff;
-    letter-spacing: .02em;
+    letter-spacing: .01em;
     text-decoration: none;
     display: flex; align-items: center; gap: 10px;
   }
@@ -67,11 +73,11 @@
   .site-nav { display:flex; gap:0; list-style:none; }
   .site-nav a {
     display: block;
-    padding: 16px 18px;
-    color: rgba(255,255,255,.75);
-    font-size: .85rem;
+    padding: 16px 16px;
+    color: rgba(255,255,255,.7);
+    font-size: .82rem;
     font-weight: 500;
-    letter-spacing: .04em;
+    letter-spacing: .02em;
     transition: color .2s, background .2s;
   }
   .site-nav a:hover {
@@ -96,10 +102,11 @@
     margin-bottom: 18px;
   }
   .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 600;
-    line-height: 1.2;
+    font-family: 'DM Sans', var(--sans);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
     margin-bottom: 20px;
   }
   .hero h1 em {
@@ -158,12 +165,13 @@
     margin-bottom: 8px;
   }
   .section-title {
-    font-family: var(--serif);
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 600;
+    font-family: 'DM Sans', var(--sans);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
     color: var(--theme);
     margin-bottom: 36px;
     line-height: 1.2;
+    letter-spacing: -0.025em;
   }
 
   /* ── Skill grid ── */
@@ -250,10 +258,11 @@
     box-shadow: 0 6px 24px rgba(61,107,92,.1);
   }
   .proj-num {
-    font-family: var(--serif);
-    font-size: 2.2rem; font-weight:600;
+    font-family: 'DM Sans', var(--sans);
+    font-size: 2rem; font-weight: 700;
     color: var(--border);
     line-height:1; margin-bottom:14px;
+    letter-spacing: -0.03em;
   }
   .proj-title { font-size:1rem; font-weight:700; color:var(--theme); margin-bottom:8px; }
   .proj-desc { font-size:.88rem; color:var(--muted); line-height:1.75; flex:1; margin-bottom:14px; }
@@ -279,10 +288,11 @@
     background:var(--light);
   }
   .stat-val {
-    font-family:var(--serif);
-    font-size:1.6rem; font-weight:600;
-    color:var(--theme); display:block; line-height:1;
-    margin-bottom:5px;
+    font-family: 'DM Sans', var(--sans);
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--theme); display: block; line-height: 1;
+    margin-bottom: 5px;
+    letter-spacing: -0.02em;
   }
   .stat-lab { font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
 
@@ -295,9 +305,10 @@
     background: var(--light);
   }
   .contact-title {
-    font-family:var(--serif);
-    font-size:1.8rem; font-weight:600;
+    font-family: 'DM Sans', var(--sans);
+    font-size:1.7rem; font-weight:700;
     color:var(--theme); margin-bottom:12px;
+    letter-spacing: -0.025em;
   }
   .contact-sub { color:var(--muted); font-size:.95rem; margin-bottom:30px; line-height:1.8; }
   .contact-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
@@ -324,6 +335,81 @@
 
   /* ── Responsive ── */
   @media(max-width:640px) {
+
+  /* ── Live banner ── */
+  .live-banner {
+    background: linear-gradient(90deg, #1a3a2e, #242e2b);
+    border-bottom: 1px solid rgba(61,107,92,.4);
+    padding: 12px 24px;
+    font-size: .88rem;
+    color: rgba(255,255,255,.85);
+  }
+  .btn-accent {
+    background: var(--accent); color: #fff;
+    border-color: var(--accent); font-size:.82rem;
+    padding: 8px 18px; white-space:nowrap;
+  }
+  .btn-accent:hover { background: #2d5244; }
+
+  /* ── Featured project card ── */
+  .proj-featured {
+    border-color: var(--accent);
+    background: rgba(61,107,92,.05);
+    position: relative;
+  }
+  .proj-badge {
+    position: absolute; top: -1px; right: 20px;
+    background: var(--accent); color: #fff;
+    font-size: .7rem; font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 0 0 6px 6px;
+    letter-spacing: .05em;
+  }
+
+  /* ── Proficiency bars ── */
+  .prof-grid { display: flex; flex-direction: column; gap: 20px; }
+  .prof-item {}
+  .prof-head {
+    display: flex; justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .prof-name { font-size: .9rem; font-weight: 600; color: var(--theme); }
+  .prof-pct  { font-size: .85rem; color: var(--muted); font-family: var(--serif); }
+  .prof-bar  {
+    height: 8px; border-radius: 4px;
+    background: var(--border); overflow: hidden;
+  }
+  .prof-fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent), #5a9e84);
+    transition: width 1s ease;
+  }
+  .study-fill {
+    background: linear-gradient(90deg, #d97706, #f59e0b);
+  }
+
+  /* ── Philosophy cards ── */
+  .phil-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .phil-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px;
+    background: var(--light);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .phil-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 18px rgba(61,107,92,.1);
+  }
+  .phil-icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .phil-title { font-size: 1rem; font-weight: 700; color: var(--theme); margin-bottom: 10px; }
+  .phil-desc  { font-size: .88rem; color: var(--muted); line-height: 1.8; }
+
+
     .site-nav { display:none; }
     .about-grid { grid-template-columns:1fr; }
     .contact-box { padding:36px 24px; }
@@ -342,6 +428,8 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">경력</a></li>
     <li><a href="#projects">프로젝트</a></li>
+    <li><a href="#proficiency">숙련도</a></li>
+    <li><a href="#philosophy">철학</a></li>
     <li><a href="#about">소개</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://github.com/amatorgtender-star/amagtender" target="_blank">GitHub ↗</a></li>
@@ -587,6 +675,160 @@
           <span class="tag">포토매핑</span>
           <span class="tag">스펙트럼</span>
         </div>
+      </div>
+
+      <div class="proj-card proj-featured">
+        <div class="proj-badge">🌐 라이브 배포</div>
+        <div class="proj-num">05</div>
+        <h3 class="proj-title">날씨 조회 앱 — Weater FE</h3>
+        <p class="proj-desc">
+          JavaScript 기반으로 제작한 날씨 조회 프론트엔드 앱.<br>
+          날씨 API를 연동해 실시간 날씨 정보를 제공하며,
+          Netlify를 통해 직접 배포·운영 중인 라이브 프로젝트입니다.
+        </p>
+        <div class="tags" style="margin-bottom:16px">
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML / CSS</span>
+          <span class="tag">Weather API</span>
+          <span class="tag">Netlify</span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://weater-fe.netlify.app/" target="_blank" class="proj-link" style="color:#3d6b5c;font-weight:700;">
+            🚀 라이브 데모 →
+          </a>
+        </div>
+      </div>
+
+      <div class="proj-card proj-featured">
+        <div class="proj-badge">📱 개발 중</div>
+        <div class="proj-num">06</div>
+        <h3 class="proj-title">크로스플랫폼 앱 — new_projact</h3>
+        <p class="proj-desc">
+          Flutter로 개발 중인 크로스플랫폼 앱.<br>
+          Android · iOS · Web · Windows · Linux · macOS
+          6개 플랫폼을 단일 코드베이스로 지원하며,
+          <code>http</code> 패키지를 활용한 REST API 통신 기능을 구현합니다.
+        </p>
+        <div class="tags" style="margin-bottom:16px">
+          <span class="tag">Flutter</span>
+          <span class="tag">Dart</span>
+          <span class="tag">C++</span>
+          <span class="tag">REST API</span>
+          <span class="tag">크로스플랫폼</span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://github.com/amatorgtender-star/new_projact" target="_blank" class="proj-link">
+            GitHub에서 보기 →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="proficiency" class="section">
+  <div class="container">
+    <p class="section-label">Proficiency</p>
+    <h2 class="section-title">기술 숙련도</h2>
+    <div class="prof-grid">
+
+      <div class="prof-item">
+        <div class="prof-head">
+          <span class="prof-name">PHP (CodeIgniter 3)</span>
+          <span class="prof-pct">85%</span>
+        </div>
+        <div class="prof-bar"><div class="prof-fill" style="width:85%"></div></div>
+      </div>
+
+      <div class="prof-item">
+        <div class="prof-head">
+          <span class="prof-name">JavaScript</span>
+          <span class="prof-pct">80%</span>
+        </div>
+        <div class="prof-bar"><div class="prof-fill" style="width:80%"></div></div>
+      </div>
+
+      <div class="prof-item">
+        <div class="prof-head">
+          <span class="prof-name">MariaDB / MySQL</span>
+          <span class="prof-pct">80%</span>
+        </div>
+        <div class="prof-bar"><div class="prof-fill" style="width:80%"></div></div>
+      </div>
+
+      <div class="prof-item">
+        <div class="prof-head">
+          <span class="prof-name">Python / FastAPI</span>
+          <span class="prof-pct">65%</span>
+        </div>
+        <div class="prof-bar"><div class="prof-fill" style="width:65%"></div></div>
+      </div>
+
+      <div class="prof-item">
+        <div class="prof-head">
+          <span class="prof-name">Java</span>
+          <span class="prof-pct">60%</span>
+        </div>
+        <div class="prof-bar"><div class="prof-fill" style="width:60%"></div></div>
+      </div>
+
+      <div class="prof-item">
+        <div class="prof-head">
+          <span class="prof-name">Flutter (학습 중)</span>
+          <span class="prof-pct">30%</span>
+        </div>
+        <div class="prof-bar"><div class="prof-fill study-fill" style="width:30%"></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PHILOSOPHY ── -->
+<section id="philosophy" class="section">
+  <div class="container">
+    <p class="section-label">Dev Philosophy</p>
+    <h2 class="section-title">개발 철학</h2>
+    <div class="phil-grid">
+
+      <div class="phil-card">
+        <div class="phil-icon">🎯</div>
+        <h3 class="phil-title">끝까지 해결한다</h3>
+        <p class="phil-desc">
+          막히는 순간 포기하지 않습니다. 방법을 바꾸고, 자료를 찾고,
+          동료에게 묻고, 결국 해결합니다.
+          "안 된다"보다 "다른 방법"을 먼저 찾는 것이 습관입니다.
+        </p>
+      </div>
+
+      <div class="phil-card">
+        <div class="phil-icon">👤</div>
+        <h3 class="phil-title">사용자 중심으로 생각한다</h3>
+        <p class="phil-desc">
+          사용하는 사람이 편해야 좋은 개발입니다.
+          작은 기능 하나에도 사용자 입장에서 먼저 고민하고,
+          코드보다 경험을 우선합니다.
+        </p>
+      </div>
+
+      <div class="phil-card">
+        <div class="phil-icon">📝</div>
+        <h3 class="phil-title">문서화는 개발의 일부다</h3>
+        <p class="phil-desc">
+          좋은 개발이란 코드만이 아닙니다.
+          내가 만든 것을 다음 사람이 쉽게 이어받을 수 있도록
+          문서화하고 인수인계하는 것도 책임입니다.
+        </p>
+      </div>
+
+      <div class="phil-card">
+        <div class="phil-icon">🤝</div>
+        <h3 class="phil-title">함께 더 잘하게 만든다</h3>
+        <p class="phil-desc">
+          혼자 잘하는 개발자보다, 함께 더 잘하게 만드는 개발자가
+          목표입니다. 팀의 생산성과 개발 문화를 함께 높이는
+          동료가 되고 싶습니다.
+        </p>
       </div>
 
     </div>
