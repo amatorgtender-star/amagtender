@@ -2,622 +2,680 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Full-Stack Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>풀스택 개발자 — 포트폴리오</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+  /* ── Variables (Alembic-inspired) ── */
   :root {
-    --navy:   #0d1b2a;
-    --navy2:  #162032;
-    --blue:   #2563eb;
-    --cyan:   #06b6d4;
-    --accent: #38bdf8;
-    --gold:   #f59e0b;
-    --white:  #f0f4ff;
-    --gray:   #94a3b8;
-    --border: rgba(56,189,248,.18);
-    --card:   rgba(22,32,50,.85);
+    --theme:    #242e2b;
+    --theme2:   #1a2320;
+    --accent:   #3d6b5c;
+    --link:     #3d6b5c;
+    --text:     #333;
+    --muted:    #666;
+    --light:    #f5f5f0;
+    --border:   #e0e0d8;
+    --white:    #ffffff;
+    --radius:   6px;
+    --max:      860px;
+    --sans:     'Noto Sans KR', sans-serif;
+    --serif:    'Lora', Georgia, serif;
   }
 
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior:smooth; }
 
   body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--navy);
-    color: var(--white);
-    overflow-x: hidden;
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.7;
   }
 
-  /* ── Noise overlay ── */
-  body::before {
-    content:'';
-    position:fixed; inset:0; z-index:0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events:none;
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  img { max-width:100%; }
+
+  /* ── Site header ── */
+  .site-header {
+    background: var(--theme);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky; top:0; z-index:100;
+    min-height: 56px;
   }
 
-  /* ── Glow blobs ── */
-  .blob {
-    position:fixed; border-radius:50%; filter:blur(120px); opacity:.25; pointer-events:none; z-index:0;
+  .site-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: .02em;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
   }
-  .blob1 { width:600px; height:600px; background:var(--blue); top:-200px; right:-100px; }
-  .blob2 { width:400px; height:400px; background:var(--cyan); bottom:-100px; left:-100px; }
+  .site-logo span {
+    font-size: 1.3rem;
+  }
+  .site-logo:hover { text-decoration: none; opacity: .85; }
 
-  /* ── Nav ── */
-  nav {
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 48px;
-    background:rgba(13,27,42,.7);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--border);
+  .site-nav { display:flex; gap:0; list-style:none; }
+  .site-nav a {
+    display: block;
+    padding: 16px 18px;
+    color: rgba(255,255,255,.75);
+    font-size: .85rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    transition: color .2s, background .2s;
   }
-  .nav-logo {
-    font-family:'Space Mono', monospace;
-    font-size:1rem; color:var(--accent);
-    letter-spacing:.08em;
+  .site-nav a:hover {
+    color: #fff;
+    background: rgba(255,255,255,.08);
+    text-decoration: none;
   }
-  .nav-links { display:flex; gap:32px; list-style:none; }
-  .nav-links a {
-    color:var(--gray); text-decoration:none; font-size:.85rem;
-    letter-spacing:.06em; transition:color .2s;
+
+  /* ── Hero banner ── */
+  .hero {
+    background: var(--theme);
+    color: #fff;
+    padding: 80px 24px 90px;
+    text-align: center;
   }
-  .nav-links a:hover { color:var(--accent); }
+  .hero-inner { max-width: var(--max); margin: 0 auto; }
+  .hero-eyebrow {
+    font-size: .78rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: rgba(255,255,255,.75);
+  }
+  .hero-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,.65);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.8;
+  }
+  .hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex; align-items:center; gap:7px;
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    font-size: .88rem; font-weight: 600;
+    transition: all .2s; border: 1.5px solid transparent;
+    text-decoration: none !important;
+    cursor: pointer;
+  }
+  .btn-white {
+    background: #fff; color: var(--theme); border-color: #fff;
+  }
+  .btn-white:hover { background: var(--light); }
+  .btn-ghost {
+    background: transparent; color: rgba(255,255,255,.85);
+    border-color: rgba(255,255,255,.35);
+  }
+  .btn-ghost:hover { border-color: #fff; color:#fff; }
+  .btn-theme {
+    background: var(--theme); color: #fff; border-color: var(--theme);
+  }
+  .btn-theme:hover { background: var(--theme2); }
+  .btn-outline {
+    background: transparent; color: var(--accent); border-color: var(--accent);
+  }
+  .btn-outline:hover { background: var(--accent); color:#fff; }
+
+  /* ── Layout wrapper ── */
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
   /* ── Sections ── */
-  section { position:relative; z-index:1; }
+  .section { padding: 72px 0; }
+  .section + .section { border-top: 1px solid var(--border); }
 
-  /* ── Hero ── */
-  #hero {
-    min-height:100vh;
-    display:flex; flex-direction:column; justify-content:center;
-    padding:120px 10vw 80px;
-  }
-  .hero-tag {
-    font-family:'Space Mono', monospace;
-    font-size:.8rem; color:var(--cyan); letter-spacing:.2em;
-    margin-bottom:20px;
-    opacity:0; animation:fadeUp .6s .2s forwards;
-  }
-  .hero-title {
-    font-size:clamp(2.6rem, 6vw, 5rem);
-    font-weight:900; line-height:1.1;
-    opacity:0; animation:fadeUp .6s .35s forwards;
-  }
-  .hero-title .highlight {
-    background:linear-gradient(90deg, var(--blue), var(--cyan));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  }
-  .hero-sub {
-    max-width:540px;
-    font-size:1rem; color:var(--gray); line-height:1.85;
-    margin-top:24px;
-    opacity:0; animation:fadeUp .6s .5s forwards;
-  }
-  .hero-btns {
-    display:flex; gap:16px; margin-top:40px;
-    opacity:0; animation:fadeUp .6s .65s forwards;
-  }
-  .btn {
-    display:inline-flex; align-items:center; gap:8px;
-    padding:13px 28px; border-radius:8px;
-    font-size:.9rem; font-weight:700; text-decoration:none;
-    transition:all .25s; cursor:pointer; border:none;
-  }
-  .btn-primary {
-    background:var(--blue); color:#fff;
-    box-shadow:0 0 28px rgba(37,99,235,.45);
-  }
-  .btn-primary:hover { background:#1d4ed8; transform:translateY(-2px); box-shadow:0 0 40px rgba(37,99,235,.65); }
-  .btn-outline {
-    background:transparent; color:var(--accent);
-    border:1.5px solid var(--border);
-  }
-  .btn-outline:hover { border-color:var(--accent); transform:translateY(-2px); }
-
-  .hero-scroll {
-    position:absolute; bottom:40px; left:50%;
-    transform:translateX(-50%);
-    display:flex; flex-direction:column; align-items:center; gap:8px;
-    color:var(--gray); font-size:.7rem; letter-spacing:.15em;
-    animation:bounce 2s infinite;
-  }
-  .hero-scroll::after {
-    content:''; display:block;
-    width:1px; height:50px;
-    background:linear-gradient(to bottom, var(--gray), transparent);
-  }
-
-  /* ── Skills ── */
-  #skills { padding:100px 10vw; }
   .section-label {
-    font-family:'Space Mono', monospace;
-    font-size:.75rem; color:var(--cyan); letter-spacing:.2em;
-    margin-bottom:12px;
+    font-size: .72rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
   }
   .section-title {
-    font-size:clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight:900; margin-bottom:60px;
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--theme);
+    margin-bottom: 36px;
+    line-height: 1.2;
   }
 
+  /* ── Skill grid ── */
   .skills-grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap:20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
   }
   .skill-card {
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:28px;
-    transition:transform .25s, box-shadow .25s, border-color .25s;
-    backdrop-filter:blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    background: var(--light);
+    transition: border-color .2s, box-shadow .2s;
   }
   .skill-card:hover {
-    transform:translateY(-5px);
-    box-shadow:0 20px 50px rgba(6,182,212,.12);
-    border-color:rgba(56,189,248,.4);
+    border-color: var(--accent);
+    box-shadow: 0 4px 18px rgba(61,107,92,.1);
   }
-  .skill-icon { font-size:2rem; margin-bottom:14px; }
-  .skill-name {
-    font-size:1rem; font-weight:700; margin-bottom:10px;
+  .skill-head {
+    display: flex; align-items:center; gap:10px;
+    margin-bottom: 14px;
   }
-  .skill-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .skill-icon { font-size: 1.4rem; }
+  .skill-name { font-weight: 700; font-size: .95rem; color: var(--theme); }
+  .tags { display:flex; flex-wrap:wrap; gap:6px; }
   .tag {
-    font-family:'Space Mono', monospace;
-    font-size:.7rem; padding:4px 10px;
-    border-radius:4px;
-    background:rgba(37,99,235,.2);
-    color:var(--accent);
-    border:1px solid rgba(56,189,248,.2);
+    font-size: .72rem;
+    padding: 3px 9px;
+    border-radius: 3px;
+    background: #fff;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-weight: 500;
   }
-  .tag.learning {
-    background:rgba(245,158,11,.15);
-    color:var(--gold);
-    border-color:rgba(245,158,11,.3);
+  .tag.study {
+    background: rgba(245,158,11,.08);
+    border-color: rgba(245,158,11,.3);
+    color: #b45309;
   }
 
-  /* ── Experience ── */
-  #experience { padding:100px 10vw; }
-  .timeline { position:relative; padding-left:36px; }
+  /* ── Timeline / Experience ── */
+  .timeline { position:relative; padding-left: 28px; }
   .timeline::before {
-    content:''; position:absolute; left:6px; top:0; bottom:0;
-    width:1px; background:linear-gradient(to bottom, var(--blue), transparent);
+    content:''; position:absolute;
+    left:6px; top:8px; bottom:8px;
+    width: 1px; background: var(--border);
   }
-  .timeline-item { position:relative; margin-bottom:50px; }
-  .timeline-dot {
-    position:absolute; left:-36px; top:4px;
-    width:14px; height:14px; border-radius:50%;
-    background:var(--blue); border:2px solid var(--navy);
-    box-shadow:0 0 14px rgba(37,99,235,.7);
+  .tl-item { position:relative; margin-bottom:44px; }
+  .tl-item:last-child { margin-bottom:0; }
+  .tl-dot {
+    position:absolute; left:-28px; top:6px;
+    width:13px; height:13px;
+    border-radius:50%;
+    background: var(--accent);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px var(--accent);
   }
-  .timeline-period {
-    font-family:'Space Mono', monospace;
-    font-size:.75rem; color:var(--cyan); margin-bottom:8px;
+  .tl-period {
+    font-size:.78rem; letter-spacing:.08em;
+    color: var(--muted); margin-bottom:5px;
+    font-weight:500;
   }
-  .timeline-title { font-size:1.2rem; font-weight:700; margin-bottom:4px; }
-  .timeline-company { color:var(--gray); font-size:.9rem; margin-bottom:14px; }
-  .timeline-desc { color:#b0bec5; line-height:1.85; font-size:.95rem; }
-  .timeline-stack { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+  .tl-title { font-size:1.05rem; font-weight:700; color:var(--theme); margin-bottom:2px; }
+  .tl-company { font-size:.9rem; color:var(--accent); margin-bottom:10px; }
+  .tl-desc { font-size:.9rem; color:var(--muted); line-height:1.8; margin-bottom:12px; }
 
-  /* ── Projects ── */
-  #projects { padding:100px 10vw; }
+  /* ── Project cards ── */
   .projects-grid {
     display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap:24px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap:18px;
   }
-  .project-card {
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px; overflow:hidden;
-    transition:transform .3s, box-shadow .3s, border-color .3s;
-    backdrop-filter:blur(12px);
+  .proj-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px;
+    background: #fff;
+    transition: border-color .2s, box-shadow .2s;
+    display:flex; flex-direction:column;
   }
-  .project-card:hover {
-    transform:translateY(-6px);
-    box-shadow:0 24px 60px rgba(37,99,235,.18);
-    border-color:rgba(56,189,248,.5);
+  .proj-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 6px 24px rgba(61,107,92,.1);
   }
-  .project-top {
-    padding:28px 28px 0;
-    display:flex; justify-content:space-between; align-items:flex-start;
+  .proj-num {
+    font-family: var(--serif);
+    font-size: 2.2rem; font-weight:600;
+    color: var(--border);
+    line-height:1; margin-bottom:14px;
   }
-  .project-num {
-    font-family:'Space Mono', monospace;
-    font-size:2.5rem; font-weight:700;
-    color:rgba(56,189,248,.12);
-    line-height:1;
+  .proj-title { font-size:1rem; font-weight:700; color:var(--theme); margin-bottom:8px; }
+  .proj-desc { font-size:.88rem; color:var(--muted); line-height:1.75; flex:1; margin-bottom:14px; }
+  .proj-link {
+    font-size:.8rem; font-weight:600;
+    color:var(--accent); display:inline-flex; align-items:center; gap:4px;
   }
-  .project-link {
-    color:var(--gray); text-decoration:none; font-size:1.1rem;
-    transition:color .2s;
-  }
-  .project-link:hover { color:var(--accent); }
-  .project-body { padding:16px 28px 28px; }
-  .project-title { font-size:1.1rem; font-weight:700; margin-bottom:10px; }
-  .project-desc { color:var(--gray); font-size:.9rem; line-height:1.75; margin-bottom:16px; }
+  .proj-link:hover { text-decoration:underline; }
 
   /* ── About ── */
-  #about { padding:100px 10vw; }
   .about-grid {
-    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    gap:48px; align-items:start;
   }
-  .about-text p { color:#b0bec5; line-height:1.9; font-size:.95rem; margin-bottom:16px; }
-  .about-stats {
-    display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  .about-text p { color:var(--muted); line-height:1.9; margin-bottom:14px; font-size:.95rem; }
+  .about-text p strong { color:var(--theme); }
+  .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .stat {
+    border: 1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px 14px; text-align:center;
+    background:var(--light);
   }
-  .stat-card {
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:12px; padding:24px;
-    text-align:center;
-    backdrop-filter:blur(12px);
+  .stat-val {
+    font-family:var(--serif);
+    font-size:1.6rem; font-weight:600;
+    color:var(--theme); display:block; line-height:1;
+    margin-bottom:5px;
   }
-  .stat-num {
-    font-family:'Space Mono', monospace;
-    font-size:2rem; font-weight:700; color:var(--accent);
-    display:block; margin-bottom:4px;
-  }
-  .stat-label { color:var(--gray); font-size:.8rem; }
+  .stat-lab { font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
 
   /* ── Contact ── */
-  #contact {
-    padding:100px 10vw 60px;
-    text-align:center;
-  }
   .contact-box {
-    max-width:600px; margin:0 auto;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px; padding:60px 48px;
-    backdrop-filter:blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 52px 48px;
+    text-align:center;
+    background: var(--light);
   }
-  .contact-title { font-size:2rem; font-weight:900; margin-bottom:16px; }
-  .contact-sub { color:var(--gray); line-height:1.8; margin-bottom:36px; }
-  .contact-links { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+  .contact-title {
+    font-family:var(--serif);
+    font-size:1.8rem; font-weight:600;
+    color:var(--theme); margin-bottom:12px;
+  }
+  .contact-sub { color:var(--muted); font-size:.95rem; margin-bottom:30px; line-height:1.8; }
+  .contact-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 
   /* ── Footer ── */
-  footer {
-    text-align:center; padding:30px;
-    color:var(--gray); font-size:.8rem;
-    border-top:1px solid var(--border);
-    position:relative; z-index:1;
+  .site-footer {
+    background: var(--theme);
+    color: rgba(255,255,255,.55);
+    padding: 32px 24px;
+    margin-top: 80px;
   }
+  .footer-inner {
+    max-width: var(--max); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:12px;
+  }
+  .footer-links { display:flex; gap:20px; list-style:none; }
+  .footer-links a { color:rgba(255,255,255,.55); font-size:.82rem; }
+  .footer-links a:hover { color:#fff; text-decoration:none; }
+  .footer-copy { font-size:.82rem; }
 
-  /* ── Animations ── */
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(24px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  @keyframes bounce {
-    0%,100% { transform:translateX(-50%) translateY(0); }
-    50%      { transform:translateX(-50%) translateY(8px); }
-  }
+  /* ── Icon SVG helper ── */
+  .icon { width:15px; height:15px; fill:currentColor; vertical-align:middle; }
 
-  .reveal {
-    opacity:0; transform:translateY(30px);
-    transition: opacity .6s ease, transform .6s ease;
-  }
-  .reveal.visible { opacity:1; transform:translateY(0); }
-
-  @media(max-width:768px) {
-    nav { padding:16px 24px; }
-    .nav-links { display:none; }
-    #hero { padding:120px 6vw 80px; }
-    #skills, #experience, #projects, #about, #contact { padding:80px 6vw; }
+  /* ── Responsive ── */
+  @media(max-width:640px) {
+    .site-nav { display:none; }
     .about-grid { grid-template-columns:1fr; }
+    .contact-box { padding:36px 24px; }
+    .section { padding:52px 0; }
   }
 </style>
 </head>
 <body>
 
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-
-<!-- NAV -->
-<nav>
-  <span class="nav-logo">&lt;dev /&gt;</span>
-  <ul class="nav-links">
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <a href="#" class="site-logo">
+    <span>⚗️</span> Dev Portfolio
+  </a>
+  <ul class="site-nav">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">경력</a></li>
     <li><a href="#projects">프로젝트</a></li>
     <li><a href="#about">소개</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/amatorgtender-star/amagtender" target="_blank">GitHub ↗</a></li>
   </ul>
-</nav>
+</header>
 
-<!-- HERO -->
-<section id="hero">
-  <p class="hero-tag">// FULL-STACK DEVELOPER · PORTFOLIO</p>
-  <h1 class="hero-title">
-    코드로 현실을<br>
-    <span class="highlight">바꾸는 개발자</span>
-  </h1>
-  <p class="hero-sub">
-    PHP · JavaScript · Python을 기반으로 한 풀스택 개발자입니다.<br>
-    DB 설계부터 프론트엔드까지, 혼자서 전 과정을 설계하고 구현합니다.
-  </p>
-  <div class="hero-btns">
-    <a href="https://github.com/amatorgtender-star/amagtender" target="_blank" class="btn btn-primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      GitHub 바로가기
-    </a>
-    <a href="#contact" class="btn btn-outline">Contact →</a>
-  </div>
-  <div class="hero-scroll">SCROLL</div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <p class="section-label reveal">// 기술 스택</p>
-  <h2 class="section-title reveal">Skills &amp; Stack</h2>
-  <div class="skills-grid">
-    <div class="skill-card reveal">
-      <div class="skill-icon">🖥️</div>
-      <div class="skill-name">백엔드</div>
-      <div class="skill-tags">
-        <span class="tag">PHP (CI3)</span>
-        <span class="tag">Python</span>
-        <span class="tag">FastAPI</span>
-        <span class="tag">Java</span>
-        <span class="tag">REST API</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon">🌐</div>
-      <div class="skill-name">프론트엔드</div>
-      <div class="skill-tags">
-        <span class="tag">JavaScript</span>
-        <span class="tag">HTML/CSS</span>
-        <span class="tag">jQuery</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon">🗄️</div>
-      <div class="skill-name">데이터베이스</div>
-      <div class="skill-tags">
-        <span class="tag">MariaDB</span>
-        <span class="tag">MySQL</span>
-        <span class="tag">DB 설계</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon">📱</div>
-      <div class="skill-name">학습 중</div>
-      <div class="skill-tags">
-        <span class="tag learning">Flutter</span>
-        <span class="tag learning">C++</span>
-        <span class="tag learning">MFC</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon">🔬</div>
-      <div class="skill-name">연구 / 전문</div>
-      <div class="skill-tags">
-        <span class="tag">N색 분산 포토매핑</span>
-        <span class="tag">빛 스펙트럼 렌더링</span>
-        <span class="tag">컴퓨터 그래픽스</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon">⚙️</div>
-      <div class="skill-name">도구 / 기타</div>
-      <div class="skill-tags">
-        <span class="tag">Git</span>
-        <span class="tag">GitHub</span>
-        <span class="tag">Linux</span>
-        <span class="tag">문서화</span>
-      </div>
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Full-Stack Developer · Portfolio</p>
+    <h1>코드로 현실을<br><em>바꾸는 개발자</em></h1>
+    <p class="hero-desc">
+      PHP · JavaScript · Python 기반 풀스택 개발자.<br>
+      DB 설계부터 프론트엔드까지, 처음부터 끝까지 직접 만듭니다.
+    </p>
+    <div class="hero-btns">
+      <a href="https://github.com/amatorgtender-star/amagtender" target="_blank" class="btn btn-white">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub 바로가기
+      </a>
+      <a href="#projects" class="btn btn-ghost">프로젝트 보기 ↓</a>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <p class="section-label reveal">// 경력</p>
-  <h2 class="section-title reveal">Experience</h2>
-  <div class="timeline">
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <p class="timeline-period">2016 — 2022</p>
-      <h3 class="timeline-title">풀스택 개발자</h3>
-      <p class="timeline-company">인라이플 (Inlifeple)</p>
-      <p class="timeline-desc">
-        사내 그룹웨어 및 운영 관리자 시스템을 처음부터 설계·구축했습니다.<br>
-        DB 설계부터 백엔드 API, 프론트엔드 화면 개발까지 전 과정을 단독으로 담당했으며,
-        팀 관리 경험을 통해 문서화와 인수인계 체계를 확립했습니다.
-      </p>
-      <div class="timeline-stack">
-        <span class="tag">PHP (CI3)</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">Java</span>
-        <span class="tag">MariaDB</span>
-        <span class="tag">그룹웨어</span>
+<!-- ── SKILLS ── -->
+<section id="skills" class="section">
+  <div class="container">
+    <p class="section-label">Skills &amp; Stack</p>
+    <h2 class="section-title">기술 스택</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-head">
+          <span class="skill-icon">🖥️</span>
+          <span class="skill-name">백엔드</span>
+        </div>
+        <div class="tags">
+          <span class="tag">PHP (CI3)</span>
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Java</span>
+          <span class="tag">REST API</span>
+        </div>
       </div>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <p class="timeline-period">2009 — 2014</p>
-      <h3 class="timeline-title">석사 연구</h3>
-      <p class="timeline-company">한신대학교 컴퓨터공학과</p>
-      <p class="timeline-desc">
-        'N색 분산 포토매핑을 이용한 빛의 스펙트럼 표현' 연구를 수행했습니다.<br>
-        현실의 빛을 컴퓨터로 재현하는 렌더링 알고리즘을 직접 구현하며
-        기술이 현실을 바꿀 수 있다는 것을 처음 실감했습니다.
-      </p>
-      <div class="timeline-stack">
-        <span class="tag">컴퓨터 그래픽스</span>
-        <span class="tag">포토매핑</span>
-        <span class="tag">렌더링</span>
+
+      <div class="skill-card">
+        <div class="skill-head">
+          <span class="skill-icon">🌐</span>
+          <span class="skill-name">프론트엔드</span>
+        </div>
+        <div class="tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML / CSS</span>
+          <span class="tag">jQuery</span>
+        </div>
       </div>
+
+      <div class="skill-card">
+        <div class="skill-head">
+          <span class="skill-icon">🗄️</span>
+          <span class="skill-name">데이터베이스</span>
+        </div>
+        <div class="tags">
+          <span class="tag">MariaDB</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">DB 설계</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-head">
+          <span class="skill-icon">📱</span>
+          <span class="skill-name">학습 중</span>
+        </div>
+        <div class="tags">
+          <span class="tag study">Flutter</span>
+          <span class="tag study">C++</span>
+          <span class="tag study">MFC</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-head">
+          <span class="skill-icon">🔬</span>
+          <span class="skill-name">연구 / 전문</span>
+        </div>
+        <div class="tags">
+          <span class="tag">N색 분산 포토매핑</span>
+          <span class="tag">빛 스펙트럼 렌더링</span>
+          <span class="tag">컴퓨터 그래픽스</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-head">
+          <span class="skill-icon">⚙️</span>
+          <span class="skill-name">도구 / 기타</span>
+        </div>
+        <div class="tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Linux</span>
+          <span class="tag">문서화</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <p class="section-label reveal">// 프로젝트</p>
-  <h2 class="section-title reveal">Projects</h2>
-  <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-top">
-        <span class="project-num">01</span>
-        <a href="https://github.com/amatorgtender-star/amagtender" target="_blank" class="project-link" title="GitHub">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-      </div>
-      <div class="project-body">
-        <h3 class="project-title">주식 자동매매 트레이딩 시스템</h3>
-        <p class="project-desc">
-          키움증권 REST API와 MariaDB를 연동한 자동매매 시스템.<br>
-          요구사항 정의부터 DB 설계, 백엔드 API까지 전 과정을 혼자 기획·구현했습니다.
+<!-- ── EXPERIENCE ── -->
+<section id="experience" class="section">
+  <div class="container">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">경력 사항</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-period">2016 — 2022 · 인라이플 (Inlifeple)</p>
+        <h3 class="tl-title">풀스택 개발자</h3>
+        <p class="tl-company">Full-Stack Developer</p>
+        <p class="tl-desc">
+          사내 그룹웨어 및 운영 관리자 시스템을 처음부터 설계·구축했습니다.<br>
+          DB 설계부터 백엔드 API, 프론트엔드 화면 개발까지 전 과정을 단독으로 담당했으며,
+          팀 관리 경험을 통해 문서화와 인수인계 체계를 직접 확립했습니다.
         </p>
-        <div class="skill-tags">
+        <div class="tags">
+          <span class="tag">PHP (CI3)</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Java</span>
+          <span class="tag">MariaDB</span>
+          <span class="tag">그룹웨어</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-period">2022 — 현재 · 자기계발</p>
+        <h3 class="tl-title">개인 프로젝트 개발</h3>
+        <p class="tl-company">Self-Directed Learning &amp; Development</p>
+        <p class="tl-desc">
+          Python · FastAPI를 독학으로 습득하며 백엔드 기술을 확장했습니다.<br>
+          키움증권 REST API와 MariaDB를 연동한 주식 자동매매 시스템을
+          요구사항 정의부터 설계·구현까지 단독으로 진행했습니다.
+        </p>
+        <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">FastAPI</span>
           <span class="tag">MariaDB</span>
           <span class="tag">키움 REST API</span>
         </div>
       </div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-top">
-        <span class="project-num">02</span>
-      </div>
-      <div class="project-body">
-        <h3 class="project-title">사내 그룹웨어 시스템</h3>
-        <p class="project-desc">
-          인라이플 재직 중 사내 그룹웨어를 처음부터 설계·구축했습니다.<br>
-          결재 흐름, 일정 관리, 공지 기능 등 전사 시스템을 풀스택으로 개발했습니다.
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-period">~ 2014 · 한신대학교</p>
+        <h3 class="tl-title">컴퓨터공학 석사</h3>
+        <p class="tl-company">M.S. Computer Science</p>
+        <p class="tl-desc">
+          논문 주제: <em>'N색 분산 포토매핑을 이용한 빛의 스펙트럼 표현'</em><br>
+          현실의 빛을 컴퓨터로 재현하는 렌더링 알고리즘을 직접 설계·구현했습니다.
         </p>
-        <div class="skill-tags">
-          <span class="tag">PHP (CI3)</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">MariaDB</span>
-          <span class="tag">Java</span>
-        </div>
-      </div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-top">
-        <span class="project-num">03</span>
-      </div>
-      <div class="project-body">
-        <h3 class="project-title">운영 관리자 시스템</h3>
-        <p class="project-desc">
-          운영팀이 사용하는 백오피스 관리자 시스템을 설계·개발했습니다.<br>
-          데이터 모니터링, 사용자 관리, 통계 리포트 기능을 포함합니다.
-        </p>
-        <div class="skill-tags">
-          <span class="tag">PHP (CI3)</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">MariaDB</span>
-          <span class="tag">관리자 UI</span>
-        </div>
-      </div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-top">
-        <span class="project-num">04</span>
-      </div>
-      <div class="project-body">
-        <h3 class="project-title">빛의 스펙트럼 렌더링 연구</h3>
-        <p class="project-desc">
-          석사 논문 주제. N색 분산 포토매핑 알고리즘을 직접 구현하여<br>
-          현실의 빛을 컴퓨터 그래픽으로 재현하는 연구를 수행했습니다.
-        </p>
-        <div class="skill-tags">
+        <div class="tags">
           <span class="tag">컴퓨터 그래픽스</span>
           <span class="tag">포토매핑</span>
           <span class="tag">스펙트럼 렌더링</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <p class="section-label reveal">// 소개</p>
-  <h2 class="section-title reveal">About Me</h2>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>
-        안녕하세요. 한신대학교 컴퓨터공학과 학·석사를 마치고,
-        풀스택 개발자로 6년간 실무를 경험했습니다.
-      </p>
-      <p>
-        막히는 순간 방법을 바꾸고, 자료를 찾고, 결국 해결하는
-        <strong style="color:var(--accent)">집요함</strong>이 저의 가장 큰 강점입니다.
-        DB 설계부터 백엔드, 프론트엔드까지 전 과정을 혼자 구현한 경험이 있어
-        팀의 어느 포지션에서도 기여할 수 있습니다.
-      </p>
-      <p>
-        현재는 Python · FastAPI를 심화 학습하며 Flutter와 C++도 공부 중입니다.
-        사용하는 사람이 편해야 좋은 개발이라는 신념으로,
-        작은 기능 하나에도 사용자 입장에서 고민합니다.
-      </p>
+<!-- ── PROJECTS ── -->
+<section id="projects" class="section">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">프로젝트</h2>
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <div class="proj-num">01</div>
+        <h3 class="proj-title">주식 자동매매 트레이딩 시스템</h3>
+        <p class="proj-desc">
+          키움증권 REST API + MariaDB 연동.<br>
+          요구사항 정의 → DB 설계 → 백엔드 구현까지
+          전 과정을 혼자 기획·개발한 개인 프로젝트입니다.
+        </p>
+        <div class="tags" style="margin-bottom:16px">
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">MariaDB</span>
+        </div>
+        <a href="https://github.com/amatorgtender-star/amagtender" target="_blank" class="proj-link">
+          GitHub에서 보기 →
+        </a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-num">02</div>
+        <h3 class="proj-title">사내 그룹웨어 시스템</h3>
+        <p class="proj-desc">
+          인라이플 재직 중 사내 그룹웨어를 처음부터 설계·구축.<br>
+          결재 흐름, 일정 관리, 공지 기능 등
+          전사 업무 시스템을 풀스택으로 개발했습니다.
+        </p>
+        <div class="tags" style="margin-bottom:16px">
+          <span class="tag">PHP (CI3)</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">MariaDB</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-num">03</div>
+        <h3 class="proj-title">운영 관리자 백오피스</h3>
+        <p class="proj-desc">
+          운영팀이 사용하는 관리자 시스템 설계·개발.<br>
+          데이터 모니터링, 사용자 관리,
+          통계 리포트 기능을 포함합니다.
+        </p>
+        <div class="tags" style="margin-bottom:16px">
+          <span class="tag">PHP (CI3)</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Java</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-num">04</div>
+        <h3 class="proj-title">빛의 스펙트럼 렌더링 연구</h3>
+        <p class="proj-desc">
+          석사 논문. N색 분산 포토매핑 알고리즘을 직접 구현하여
+          현실의 빛을 컴퓨터 그래픽으로 재현하는
+          연구를 수행했습니다.
+        </p>
+        <div class="tags" style="margin-bottom:16px">
+          <span class="tag">컴퓨터 그래픽스</span>
+          <span class="tag">포토매핑</span>
+          <span class="tag">스펙트럼</span>
+        </div>
+      </div>
+
     </div>
-    <div class="about-stats reveal">
-      <div class="stat-card">
-        <span class="stat-num">6+</span>
-        <span class="stat-label">Years Experience</span>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="section">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">소개</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          안녕하세요. 한신대학교 컴퓨터공학과 학·석사를 마치고,
+          풀스택 개발자로 6년간 실무를 경험했습니다.
+        </p>
+        <p>
+          막히는 순간 방법을 바꾸고, 자료를 찾고, 결국 해결하는
+          <strong>집요함</strong>이 저의 가장 큰 강점입니다.
+          DB 설계부터 백엔드, 프론트엔드까지
+          전 과정을 단독으로 구현한 경험이 있어
+          팀의 어느 포지션에서도 기여할 수 있습니다.
+        </p>
+        <p>
+          현재는 Python · FastAPI를 심화 학습하며
+          Flutter와 C++도 공부 중입니다.
+          <strong>사용하는 사람이 편해야 좋은 개발</strong>이라는 신념으로,
+          작은 기능 하나에도 사용자 입장에서 고민합니다.
+        </p>
+        <div style="margin-top:24px">
+          <a href="https://github.com/amatorgtender-star/amagtender" target="_blank" class="btn btn-outline">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub 방문하기
+          </a>
+        </div>
       </div>
-      <div class="stat-card">
-        <span class="stat-num">M.S.</span>
-        <span class="stat-label">컴퓨터공학 석사</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">4+</span>
-        <span class="stat-label">Tech Stacks</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">Full</span>
-        <span class="stat-label">Stack Developer</span>
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-val">6+</span>
+          <span class="stat-lab">Years Exp.</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">M.S.</span>
+          <span class="stat-lab">컴퓨터공학</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">Full</span>
+          <span class="stat-lab">Stack Dev</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">4+</span>
+          <span class="stat-lab">Tech Stacks</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-box reveal">
-    <h2 class="contact-title">함께 만들어요 🤝</h2>
-    <p class="contact-sub">
-      새로운 팀에서 함께 개발하고 싶습니다.<br>
-      언제든지 연락 주세요.
-    </p>
-    <div class="contact-links">
-      <a href="https://github.com/amatorgtender-star/amagtender" target="_blank" class="btn btn-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="mailto:" class="btn btn-outline">이메일 보내기 →</a>
+<!-- ── CONTACT ── -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-box">
+      <h2 class="contact-title">함께 만들어요 🤝</h2>
+      <p class="contact-sub">
+        새로운 팀에서 함께 개발하고 싶습니다.<br>
+        언제든지 연락 주세요.
+      </p>
+      <div class="contact-btns">
+        <a href="https://github.com/amatorgtender-star/amagtender" target="_blank" class="btn btn-theme">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="mailto:" class="btn btn-outline">이메일 보내기 →</a>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>
-  © 2026 Full-Stack Developer Portfolio &nbsp;·&nbsp;
-  Built with ❤️ &nbsp;·&nbsp;
-  <a href="https://github.com/amatorgtender-star/amagtender" target="_blank" style="color:var(--accent); text-decoration:none;">GitHub</a>
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 풀스택 개발자 포트폴리오</span>
+    <ul class="footer-links">
+      <li><a href="https://github.com/amatorgtender-star/amagtender" target="_blank">GitHub</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </footer>
 
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
